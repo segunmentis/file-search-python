@@ -1,4 +1,5 @@
 from os import path
+import termcolor
 
 
 def search_file(name, word):
@@ -8,11 +9,14 @@ def search_file(name, word):
         file_content = f.readlines()
         for content in file_content:
             if word.lower() in content.lower():
-                print(content)
+                colored = content.lower()
+                colored = colored.replace(word.lower(), termcolor.colored(word.lower(), 'red'))
                 count += content.lower().count(word.lower())
+                print(colored)
         if count == 0:
             print("{} was not found in {}".format(word, name))
-        print(count)
+        else:
+            print("{} was found in {} {} times".format(word, name, count))
     f.close()
 
 
