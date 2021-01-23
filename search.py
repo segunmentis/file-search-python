@@ -18,7 +18,7 @@ def check_file_extension(filename):
 def search_file(name, word):
     count = 0
     line = 0
-    f = open(name, 'r')
+    f = open(name, 'r', encoding='utf-8')
     if f.mode == 'r':
         # Read the file content line by line
         file_content = f.readlines()
