@@ -4,15 +4,17 @@ import termcolor
 
 def search_file(name, word):
     count = 0
+    line = 0
     f = open(name, 'r')
     if f.mode == 'r':
         file_content = f.readlines()
         for content in file_content:
+            line += 1
             if word.lower() in content.lower():
                 colored = content.lower()
                 colored = colored.replace(word.lower(), termcolor.colored(word.lower(), 'red'))
                 count += content.lower().count(word.lower())
-                print(colored)
+                print("Line:{} {}".format(line, colored))
         if count == 0:
             print("{} was not found in {}".format(word, name))
         else:
