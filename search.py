@@ -140,32 +140,6 @@ def search_file(name, word, option):
 
 
 def main(argv):
-    # file_name = input("Enter the file name or full file path: ")
-    #
-    # while not path.exists(file_name):
-    #     input_trials += 1
-    #     if input_trials > 2:
-    #         exit("You have inputted the wrong path 3 times")
-    #     file_name = input("The file does not exist, enter the file name again: ")
-    #
-    # invalid_extension = check_file_extension(file_name)
-    # if invalid_extension:
-    #     exit("The input file cannot be an image file, please try again with another file.")
-    #
-    # search_string = input("Enter search string: ")
-    # search_string = search_string.rstrip()
-    #
-    # case_option = input("Case sensitive search or Case insensitive 1/2: ")
-    # case_option = int(case_option)
-    # if case_option not in [1, 2]:
-    #     exit("Invalid option selected, try again!!")
-    # if case_option == 2:
-    #     search_string = convert_to_lowercase(search_string)
-    # start_time = time.time()
-    # search_file(file_name, search_string, case_option)
-    # end_time = time.time()
-    # print("%s seconds" % (end_time - start_time))
-
     if len(argv) < 1:
         usage()
         exit()
@@ -208,7 +182,22 @@ def main(argv):
         exit("Invalid option selected, try again!!")
     if case_option == 2:
         search_string = convert_to_lowercase(search_string)
-    regex_search(file_name, search_string, case_option)
+
+    search_method = input("Enter 1 for regex search or 2 for regular search: ")
+    search_method = int(search_method)
+    if search_method == 1:
+        start_time = time.time()
+        regex_search(file_name, search_string, case_option)
+        end_time = time.time()
+        print("Regex search took %s seconds" % (end_time - start_time))
+    elif search_method == 2:
+        start_time = time.time()
+        search_file(file_name, search_string, case_option)
+        end_time = time.time()
+        print("Regular search took %s seconds" % (end_time - start_time))
+    else:
+        print("You entered the wrong option")
+        exit()
 
 
 if __name__ == "__main__":
