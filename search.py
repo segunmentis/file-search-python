@@ -1,3 +1,8 @@
+"""
+Search word application
+Usage: search.py -i <input-file> -s <search-string> -c <case sensitive 1> or <case insensitive 2> -h
+"""
+
 from os import path
 import getopt, sys
 import termcolor, colorama
@@ -13,7 +18,7 @@ def usage():
     """
     Prints usage of file
     """
-    print("Usage search.py -i <input-file> -s <search-string> -c <case sensitive 1> or <case insensitive 2> -h")
+    print("Usage: search.py -i <input-file> -s <search-string> -c <case sensitive 1> or <case insensitive 2> -h")
 
 
 def usage_help():
@@ -140,6 +145,13 @@ def search_file(name, word, option):
 
 
 def main(argv):
+    """
+    The main function
+    
+    Parameters:
+        argv: Command line arguments passed to the script
+    """
+    
     if len(argv) < 1:
         usage()
         exit()
